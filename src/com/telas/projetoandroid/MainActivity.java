@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 			
 		}else{
 			
-			//Tratamento de erro quando usuário não digita texto
+			//TODO: Tratamento de erro quando usuário não digita texto
 		}
 		
 	}
