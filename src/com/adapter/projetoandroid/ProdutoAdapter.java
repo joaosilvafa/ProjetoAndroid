@@ -2,16 +2,20 @@ package com.adapter.projetoandroid;
 
 import java.util.List;
 
-import com.buscape.developer.Produto;
-import com.example.projetoandroid.R;
-
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxStatus;
+import com.androidquery.callback.BitmapAjaxCallback;
+import com.buscape.developer.Produto;
+import com.example.projetoandroid.R;
 
 public class ProdutoAdapter extends BaseAdapter{
 
@@ -41,6 +45,7 @@ public class ProdutoAdapter extends BaseAdapter{
 		Produto produto = lista.get(posicao);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.activity_busca, null);
+
 		TextView textProduto = (TextView) v.findViewById(R.id.produto);
 		TextView textPrecoMin = (TextView) v.findViewById(R.id.precoMin);
 		TextView textPrecoMax = (TextView) v.findViewById(R.id.precoMax);
@@ -48,9 +53,21 @@ public class ProdutoAdapter extends BaseAdapter{
 		textPrecoMin.setText(produto.getPriceMin());
 		textPrecoMax.setText(produto.getPriceMax());
 		
-//		ImageView img = (ImageView) v.findViewById(R.id.imgProduto);
-//		img.setI(produto.getThumbnail());
-		
+	    ImageView imageview = (ImageView) v.findViewById(R.id.imgProduto);
+        AQuery aq = new AQuery(convertView);
+
+        String imageUrl = produto.getThumbnail();
+
+       aq.id(imageview).progress(this).image(imageUrl, true, true, 0, 0, new BitmapAjaxCallback(){
+
+                @Override
+                public void callback(String url, ImageView iv, Bitmap bm, AjaxStatus status){
+
+                    iv.setImageBitmap(bm);
+
+                }
+        });
+
 		return v;
 		
 	}
