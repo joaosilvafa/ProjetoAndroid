@@ -8,31 +8,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <EditText
-        android:id="@+id/editText1"
+    <ImageView
+        android:id="@+id/imgProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
-        android:layout_toRightOf="@+id/editText1"
-        android:text="Buscar" />
+        android:layout_alignParentLeft="true"/>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/produto"
+        android:layout_width="140px"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="50dp"
+        android:textSize="10px" />
+
+    <TextView
+        android:id="@+id/precoMinText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="16dp" />
+        android:layout_marginLeft="50dp"
+       	android:layout_marginTop="35dp"
+       	android:text="A partir de:"
+        android:textSize="10px" />
+
+    <TextView
+        android:id="@+id/precoMin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="122dp"
+       	android:layout_marginTop="35dp"
+        android:textSize="10px" />
+    
+    <TextView
+        android:id="@+id/precoMaxText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_marginTop="55dp"
+       	android:textSize="10px"
+       	android:text="Até:"
+        android:layout_marginLeft="50dp" />
+    
+    <TextView
+        android:id="@+id/precoMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       	android:layout_marginTop="55dp"
+       	android:textSize="10px"
+        android:layout_marginLeft="75dp" />
 
 </RelativeLayout>
