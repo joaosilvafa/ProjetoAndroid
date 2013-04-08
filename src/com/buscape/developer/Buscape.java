@@ -4,13 +4,7 @@ import java.util.List;
 
 import com.buscape.developer.http.HttpRequester;
 import com.buscape.developer.request.Filter;
-import com.buscape.developer.request.Parameters;
-import com.buscape.developer.request.ParametersBuilder;
-import com.buscape.developer.request.Service;
-import com.buscape.developer.request.util.URLBuilder;
-import com.buscape.developer.result.parser.AbstractResultParser;
 import com.buscape.developer.result.parser.XmlResultParser;
-import com.buscape.developer.result.type.Result;
 
 /**
  * Buscapé API wrapper
@@ -27,6 +21,9 @@ public final class Buscape {
 	
 	private final String format;
 
+	
+	
+	
 	/**
 	 * Constructs a wrapper object to Buscapé API, with <code>BRAZIL</code> as
 	 * country and <code>XML</code> as default result format.
@@ -51,9 +48,6 @@ public final class Buscape {
 	 * @param format 
 	 * 			  default result format of requests.
 	 */
-	public Buscape(String applicationId, Filter filter, String format) {
-		this(applicationId, filter, "br", format);
-	}
 
 	/**
 	 * Constructs a wrapper object to Buscapé API.
@@ -82,6 +76,16 @@ public final class Buscape {
 		String xml = callService(url);
 		
 		return getListProduto(xml);
+		
+	}
+	
+	public Produto retornaProduto(String productId) throws BuscapeException {
+		
+		//monta URL
+		String url = "http://sandbox.buscape.com/service/viewProductDetails/564771466d477a4458664d3d/br/?productId=" + productId + "&amp;keyword=celular";
+		String xml = callService(url);
+		
+		return getListProduto(xml).get(0);
 		
 	}
 	

@@ -45,7 +45,6 @@ public class ProdutoAdapter extends BaseAdapter{
 		Produto produto = lista.get(posicao);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = inflater.inflate(R.layout.activity_busca, null);
-
 		TextView textProduto = (TextView) v.findViewById(R.id.produto);
 		TextView textPrecoMin = (TextView) v.findViewById(R.id.precoMin);
 		TextView textPrecoMax = (TextView) v.findViewById(R.id.precoMax);
@@ -65,9 +64,14 @@ public class ProdutoAdapter extends BaseAdapter{
 
                     iv.setImageBitmap(bm);
 
+
                 }
+
         });
 
+ 
+		
+		
 		return v;
 		
 	}

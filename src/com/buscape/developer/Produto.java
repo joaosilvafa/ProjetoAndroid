@@ -2,11 +2,13 @@ package com.buscape.developer;
 
 public class Produto {
 	
+	private String id;
 	private String productName;
 	private String productShortName;
 	private String priceMin;
 	private String priceMax;
 	private String thumbnail;
+	
 	
 	/**
 	 * @return the productName
@@ -67,6 +69,18 @@ public class Produto {
 	 */
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
+	}
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

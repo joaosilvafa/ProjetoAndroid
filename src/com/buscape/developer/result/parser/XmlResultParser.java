@@ -10,8 +10,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.xml.sax.Attributes;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -65,6 +63,7 @@ public final class XmlResultParser extends AbstractResultParser {
 			HashMap<String, String> map = new HashMap<String, String>();
 			Element e = (Element) nl.item(i);
 			// adding each child node to HashMap key => value
+			map.put(KEY_PRODUTO, getSubElementValue(e, KEY_PRODUTO, "id"));
 			map.put(KEY_PRODUTO_NAME, getValue(e, KEY_PRODUTO_NAME));
 			map.put(KEY_PRODUTO_SHNAME, getValue(e, KEY_PRODUTO_SHNAME));
 			map.put(KEY_PRODUTO_PRICEMIN, getValue(e, KEY_PRODUTO_PRICEMIN));
@@ -84,6 +83,7 @@ public final class XmlResultParser extends AbstractResultParser {
 			produtoNovo.setPriceMin(iten.get(KEY_PRODUTO_PRICEMIN));
 			produtoNovo.setPriceMax(iten.get(KEY_PRODUTO_PRICEMAX));
 			produtoNovo.setThumbnail(iten.get(KEY_THUMBNAIL));
+			produtoNovo.setId(iten.get(KEY_PRODUTO));
 
 			listProduto.add(produtoNovo);
 		}

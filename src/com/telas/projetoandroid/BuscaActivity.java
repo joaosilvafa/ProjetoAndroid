@@ -3,12 +3,12 @@ package com.telas.projetoandroid;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.ListView;
 
 import com.adapter.projetoandroid.ProdutoAdapter;
 import com.buscape.developer.Buscape;
@@ -36,9 +36,6 @@ public class BuscaActivity extends ListActivity {
 		}
 		
 		setListAdapter(new ProdutoAdapter(this, produtos));
-//		final TextView text = (TextView) findViewById(R.id.textView1);
-		
-//		text.setText(produtos.get(0).getProductShortName());
 	}
 
 	@Override
@@ -46,5 +43,16 @@ public class BuscaActivity extends ListActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id){
+		super.onListItemClick(l, v, position, id);
+		Produto produto = (Produto) this.getListAdapter().getItem(position);
+		final Intent it = new Intent(this, ProdutoActivity.class);
+		it.putExtra("id", produto.getId());
+		startActivity(it);
+		
 	}
 }
