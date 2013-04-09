@@ -1,74 +1,60 @@
 package com.telas.projetoandroid;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidquery.AQuery;
-import com.androidquery.callback.AjaxStatus;
-import com.androidquery.callback.BitmapAjaxCallback;
 import com.buscape.developer.Buscape;
 import com.buscape.developer.BuscapeException;
 import com.buscape.developer.Produto;
 import com.buscape.developer.request.Filter;
 import com.example.projetoandroid.R;
+
 public class ProdutoActivity extends Activity {
-	
-	private Context context;
+
 	private static final String applicationId = "564771466d477a4458664d3d";
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//Recupera produto passado por intent
+		setContentView(R.layout.activity_produto);
+
+		// Recupera produto passado por intent
 		Intent it = getIntent();
 
 		Produto produto = new Produto();
-		context = this;
-		
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = inflater.inflate(R.layout.activity_produto, null);
-		
+
 		Buscape buscape = new Buscape(applicationId, new Filter());
 		try {
 			produto = buscape.retornaProduto(it.getStringExtra("id"));
 		} catch (BuscapeException e) {
 			e.printStackTrace();
 		}
-		
-		TextView textProduto = (TextView) v.findViewById(R.id.textProdutosDetalhes);
+
+		TextView textProduto = (TextView) findViewById(R.id.textProdutosDetalhes);
 		textProduto.setText(produto.getProductShortName());
-		
-		ImageView imageview = (ImageView) v.findViewById(R.id.imgProdutoDetalhes);
-		AQuery aq = new AQuery(new View(context));
+		TextView textPrecoMin = (TextView) findViewById(R.id.precoMinDtl);
+		textPrecoMin.setText(produto.getPriceMin());
+		TextView textPrecoMax = (TextView) findViewById(R.id.precoMaxDtl);
+		textPrecoMax.setText(produto.getPriceMax());
 
-		
+		ImageView imageview = (ImageView) findViewById(R.id.imgProdutoDetalhes);
 		String imageUrl = produto.getThumbnail();
-
-		aq.id(imageview).progress(this)
-				.image(imageUrl, true, true, 0, 0, new BitmapAjaxCallback() {
-
-					@Override
-					public void callback(String url, ImageView iv, Bitmap bm,
-							AjaxStatus status) {
-
-						iv.setImageBitmap(bm);
-
-					}
-				});
 		
-		setContentView(R.layout.activity_produto);
-	
-	
+		 Bitmap bitmap = DownloadImage(imageUrl);
+	     imageview.setImageBitmap(bitmap);
+
 	}
 
 	@Override
@@ -78,4 +64,45 @@ public class ProdutoActivity extends Activity {
 		return true;
 	}
 	
+	
+	 private InputStream OpenHttpConnection(String urlString) throws IOException {
+	        InputStream in = null;
+	        int response = -1;
+
+	        URL url = new URL(urlString);
+	        URLConnection conn = url.openConnection();
+
+	        if (!(conn instanceof HttpURLConnection))
+	            throw new IOException("Not an HTTP connection");
+
+	        try {
+	            HttpURLConnection httpConn = (HttpURLConnection) conn;
+	            httpConn.setAllowUserInteraction(false);
+	            httpConn.setInstanceFollowRedirects(true);
+	            httpConn.setRequestMethod("GET");
+	            httpConn.connect();
+	            response = httpConn.getResponseCode();
+	            if (response == HttpURLConnection.HTTP_OK) {
+	                in = httpConn.getInputStream();
+	            }
+	        } catch (Exception ex) {
+	            throw new IOException("Error connecting");
+	        }
+	        return in;
+	    }
+
+	    private Bitmap DownloadImage(String URL) {
+	        Bitmap bitmap = null;
+	        InputStream in = null;
+	        try {
+	            in = OpenHttpConnection(URL);
+	            bitmap = BitmapFactory.decodeStream(in);
+	            in.close();
+	        } catch (IOException e1) {
+	            // TODO Auto-generated catch block
+	            e1.printStackTrace();
+	        }
+	        return bitmap;
+	    }
+
 }
