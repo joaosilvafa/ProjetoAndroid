@@ -13,8 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="135dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="0dp"
         android:textStyle="bold" />
 
     <ImageView
@@ -23,39 +23,68 @@
         android:layout_height="120dp" />
 
     <TextView
-        android:id="@+id/precoMinDtlText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="A partir de:" />
-
-    <TextView
         android:id="@+id/precoMaxDtlText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="50dp"
+        android:text="A partir de:" />
+
+    <TextView
+        android:id="@+id/precominDtlText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_marginLeft="125dp"
+        android:layout_marginTop="70dp"
         android:text="Até:" />
 
     <TextView
         android:id="@+id/precoMaxDtl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="140dp" />
+       android:layout_marginLeft="200dp"
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:id="@+id/precoMinDtl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="170dp" />
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="70dp" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgProdutoDetalhes"
+        android:layout_below="@+id/imgProdutoDetalhes"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="19dp"
+        android:text="Adicionar produto à lista de busca automatica:" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignLeft="@+id/textView1"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Em horas"
+        android:textSize="12dp" >
+
+        <requestFocus />
+    </EditText>
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="210dp"
-        android:text="Button" />
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@+id/precominDtlText"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="14dp"
+        android:text="Ok"
+        android:textSize="12dp" />
 
 </RelativeLayout>
