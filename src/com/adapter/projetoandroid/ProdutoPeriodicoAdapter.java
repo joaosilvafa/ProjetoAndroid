@@ -47,7 +47,7 @@ public class ProdutoPeriodicoAdapter extends BaseAdapter{
 		View v = inflater.inflate(R.layout.activity_produto_periodico, null);
 		TextView textProduto = (TextView) v.findViewById(R.id.produtoPeriodico);
 		TextView textPrecoMin = (TextView) v.findViewById(R.id.precoMinPeriodico);
-		textProduto.setText(produto.getProductShortName());
+		textProduto.setText(produto.getProductName());
 		textPrecoMin.setText(produto.getPriceMin());
 		
 	    ImageView imageview = (ImageView) v.findViewById(R.id.imgProdutoPeriodico);

@@ -16,6 +16,7 @@ import com.buscape.developer.BuscapeException;
 import com.buscape.developer.Produto;
 import com.buscape.developer.request.Filter;
 import com.example.projetoandroid.R;
+
 public class BuscaActivity extends ListActivity {
 
 	private static final String applicationId = "564771466d477a4458664d3d";
@@ -23,7 +24,7 @@ public class BuscaActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		Intent it = getIntent();
 		String keyWord = it.getStringExtra("keyWord");
 
@@ -34,8 +35,16 @@ public class BuscaActivity extends ListActivity {
 		} catch (BuscapeException e) {
 			e.printStackTrace();
 		}
-		
-		setListAdapter(new ProdutoAdapter(this, produtos));
+
+		if (!produtos.isEmpty()) {
+			setListAdapter(new ProdutoAdapter(this, produtos));
+		}
+		else{
+			
+			final Intent ita = new Intent(this, MainActivity.class);
+			ita.putExtra("erro", "erro");
+			startActivity(ita);
+		}
 	}
 
 	@Override
@@ -44,15 +53,14 @@ public class BuscaActivity extends ListActivity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
-	
+
 	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id){
+	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		Produto produto = (Produto) this.getListAdapter().getItem(position);
 		final Intent it = new Intent(this, ProdutoActivity.class);
 		it.putExtra("id", produto.getId());
 		startActivity(it);
-		
+
 	}
 }

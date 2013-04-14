@@ -23,7 +23,6 @@ import com.buscape.developer.Produto;
 import com.buscape.developer.request.Filter;
 import com.dao.projetoandroid.DataHelper;
 import com.example.projetoandroid.R;
-import com.sun.activation.viewers.TextEditor;
 
 public class ProdutoActivity extends Activity {
 
@@ -50,7 +49,7 @@ public class ProdutoActivity extends Activity {
 		}
 
 		TextView textProduto = (TextView) findViewById(R.id.textProdutosDetalhes);
-		textProduto.setText(produto.getProductShortName());
+		textProduto.setText(produto.getProductName());
 		TextView textPrecoMin = (TextView) findViewById(R.id.precoMinDtl);
 		textPrecoMin.setText(produto.getPriceMin());
 		TextView textPrecoMax = (TextView) findViewById(R.id.precoMaxDtl);

@@ -82,7 +82,7 @@ public final class Buscape {
 	public Produto retornaProduto(String productId) throws BuscapeException {
 		
 		//monta URL
-		String url = "http://sandbox.buscape.com/service/viewProductDetails/564771466d477a4458664d3d/br/?productId=" + productId + "&amp;keyword=celular";
+		String url = "http://sandbox.buscape.com/service/viewProductDetails/564771466d477a4458664d3d/br/?productId=" + productId + "&amp";
 		String xml = callService(url);
 		
 		return getListProduto(xml).get(0);

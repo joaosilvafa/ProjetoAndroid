@@ -48,7 +48,7 @@ public class ProdutoAdapter extends BaseAdapter{
 		TextView textProduto = (TextView) v.findViewById(R.id.produto);
 		TextView textPrecoMin = (TextView) v.findViewById(R.id.precoMin);
 		TextView textPrecoMax = (TextView) v.findViewById(R.id.precoMax);
-		textProduto.setText(produto.getProductShortName());
+		textProduto.setText(produto.getProductName());
 		textPrecoMin.setText(produto.getPriceMin());
 		textPrecoMax.setText(produto.getPriceMax());
 		

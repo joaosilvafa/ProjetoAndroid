@@ -38,7 +38,7 @@ public class DataHelper {
 		this.insertStmt.bindString(2, produto.getId());
 		this.insertStmt.bindString(3, produto.getPriceMin());
 		this.insertStmt.bindString(4, produto.getThumbnail());
-		this.insertStmt.bindString(5, produto.getProductShortName());
+		this.insertStmt.bindString(5, produto.getProductName());
 		return this.insertStmt.executeInsert();
 	}
 
@@ -83,7 +83,7 @@ public class DataHelper {
 			do {
 				produto = new Produto();
 				produto.setId(c.getString(c.getColumnIndex("ID_PRODUTO")));
-				produto.setProductShortName(c.getString(c.getColumnIndex("NOME_PRODUTO")));
+				produto.setProductName(c.getString(c.getColumnIndex("NOME_PRODUTO")));
 				produto.setPriceMin(c.getString(c.getColumnIndex("PRECO_ANT")));
 				produto.setThumbnail(c.getString(c.getColumnIndex("IMG_PRODUTO")));
 				list.add(produto);
