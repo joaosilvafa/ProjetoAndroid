@@ -63,9 +63,10 @@
         android:text="Adicionar produto à lista de busca automatica:" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/edtHoras"
         android:layout_width="80dp"
-        android:layout_height="30dp"
+        android:onClick="onClear"
+        android:layout_height="40dp"
         android:layout_alignBaseline="@+id/button1"
         android:layout_alignBottom="@+id/button1"
         android:layout_alignLeft="@+id/textView1"
@@ -80,7 +81,8 @@
     <Button
         android:id="@+id/button1"
         android:layout_width="70dp"
-        android:layout_height="30dp"
+        android:onClick="onClick"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/precominDtlText"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="14dp"

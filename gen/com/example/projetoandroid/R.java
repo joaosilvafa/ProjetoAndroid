@@ -24,27 +24,34 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000f;
+        public static final int action_settings=0x7f080015;
         public static final int button1=0x7f080007;
         public static final int editText1=0x7f080006;
+        public static final int edtHoras=0x7f080010;
         public static final int imgProduto=0x7f080000;
-        public static final int imgProdutoDetalhes=0x7f080009;
+        public static final int imgProdutoDetalhes=0x7f08000a;
+        public static final int imgProdutoPeriodico=0x7f080011;
+        public static final int listView1=0x7f080008;
         public static final int precoMax=0x7f080005;
-        public static final int precoMaxDtl=0x7f08000c;
-        public static final int precoMaxDtlText=0x7f08000a;
+        public static final int precoMaxDtl=0x7f08000d;
+        public static final int precoMaxDtlText=0x7f08000b;
         public static final int precoMaxText=0x7f080004;
         public static final int precoMin=0x7f080003;
-        public static final int precoMinDtl=0x7f08000d;
+        public static final int precoMinDtl=0x7f08000e;
+        public static final int precoMinPeriodico=0x7f080014;
+        public static final int precoMinPeriodicoText=0x7f080013;
         public static final int precoMinText=0x7f080002;
-        public static final int precominDtlText=0x7f08000b;
+        public static final int precominDtlText=0x7f08000c;
         public static final int produto=0x7f080001;
-        public static final int textProdutosDetalhes=0x7f080008;
-        public static final int textView1=0x7f08000e;
+        public static final int produtoPeriodico=0x7f080012;
+        public static final int textProdutosDetalhes=0x7f080009;
+        public static final int textView1=0x7f08000f;
     }
     public static final class layout {
         public static final int activity_busca=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int activity_produto=0x7f030002;
+        public static final int activity_produto_periodico=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f070000;

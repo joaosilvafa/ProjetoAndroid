@@ -17,12 +17,12 @@ import com.androidquery.callback.BitmapAjaxCallback;
 import com.buscape.developer.Produto;
 import com.example.projetoandroid.R;
 
-public class ProdutoAdapter extends BaseAdapter{
+public class ProdutoPeriodicoAdapter extends BaseAdapter{
 
 	private Context context;
 	private List<Produto> lista;
 	
-	public ProdutoAdapter(Context context, List<Produto> lista){
+	public ProdutoPeriodicoAdapter(Context context, List<Produto> lista){
 		this.context = context;
 		this.lista = lista;
 	}
@@ -44,15 +44,13 @@ public class ProdutoAdapter extends BaseAdapter{
 		//Recupera o produto da posição atual
 		Produto produto = lista.get(posicao);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = inflater.inflate(R.layout.activity_busca, null);
-		TextView textProduto = (TextView) v.findViewById(R.id.produto);
-		TextView textPrecoMin = (TextView) v.findViewById(R.id.precoMin);
-		TextView textPrecoMax = (TextView) v.findViewById(R.id.precoMax);
+		View v = inflater.inflate(R.layout.activity_produto_periodico, null);
+		TextView textProduto = (TextView) v.findViewById(R.id.produtoPeriodico);
+		TextView textPrecoMin = (TextView) v.findViewById(R.id.precoMinPeriodico);
 		textProduto.setText(produto.getProductShortName());
 		textPrecoMin.setText(produto.getPriceMin());
-		textPrecoMax.setText(produto.getPriceMax());
 		
-	    ImageView imageview = (ImageView) v.findViewById(R.id.imgProduto);
+	    ImageView imageview = (ImageView) v.findViewById(R.id.imgProdutoPeriodico);
         AQuery aq = new AQuery(convertView);
 
         String imageUrl = produto.getThumbnail();

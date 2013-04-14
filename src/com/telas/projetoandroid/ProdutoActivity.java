@@ -12,6 +12,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,11 +21,16 @@ import com.buscape.developer.Buscape;
 import com.buscape.developer.BuscapeException;
 import com.buscape.developer.Produto;
 import com.buscape.developer.request.Filter;
+import com.dao.projetoandroid.DataHelper;
 import com.example.projetoandroid.R;
+import com.sun.activation.viewers.TextEditor;
 
 public class ProdutoActivity extends Activity {
 
 	private static final String applicationId = "564771466d477a4458664d3d";
+	private static Produto produto;
+	
+	private DataHelper dh;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +40,7 @@ public class ProdutoActivity extends Activity {
 		// Recupera produto passado por intent
 		Intent it = getIntent();
 
-		Produto produto = new Produto();
+		produto = new Produto();
 
 		Buscape buscape = new Buscape(applicationId, new Filter());
 		try {
@@ -48,13 +55,29 @@ public class ProdutoActivity extends Activity {
 		textPrecoMin.setText(produto.getPriceMin());
 		TextView textPrecoMax = (TextView) findViewById(R.id.precoMaxDtl);
 		textPrecoMax.setText(produto.getPriceMax());
-
 		ImageView imageview = (ImageView) findViewById(R.id.imgProdutoDetalhes);
 		String imageUrl = produto.getThumbnail();
 		
 		 Bitmap bitmap = DownloadImage(imageUrl);
 	     imageview.setImageBitmap(bitmap);
 
+	}
+	
+	public void onClick(View v){
+		
+		final EditText horas = (EditText) findViewById(R.id.edtHoras);
+		
+		this.dh = new DataHelper(this);
+        this.dh.insert(produto, horas.toString());
+		
+        final Intent it = new Intent(this, MainActivity.class);
+		startActivity(it);
+	}
+	
+	public void onClear(View v){
+		
+		EditText edt = (EditText) findViewById(R.id.editText1);
+		edt.setText("");
 	}
 
 	@Override
