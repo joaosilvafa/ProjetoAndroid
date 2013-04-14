@@ -8,6 +8,7 @@ public class Produto {
 	private String priceMin;
 	private String priceMax;
 	private String thumbnail;
+	private String tempoLoop;
 	
 	
 	/**
@@ -81,6 +82,18 @@ public class Produto {
 	 */
 	public void setId(String id) {
 		this.id = id;
+	}
+	/**
+	 * @return the tempoLoop
+	 */
+	public String getTempoLoop() {
+		return tempoLoop;
+	}
+	/**
+	 * @param tempoLoop the tempoLoop to set
+	 */
+	public void setTempoLoop(String tempoLoop) {
+		this.tempoLoop = tempoLoop;
 	}
 
 }

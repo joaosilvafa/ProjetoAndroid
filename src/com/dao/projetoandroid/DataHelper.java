@@ -10,13 +10,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
+import com.buscape.developer.Buscape;
+import com.buscape.developer.BuscapeException;
 import com.buscape.developer.Produto;
+import com.buscape.developer.request.Filter;
 
 public class DataHelper {
 
 	private static final String DATABASE_NAME = "dbProduto.db";
 	private static final int DATABASE_VERSION = 1;
 	private static final String TABLE_NAME = "Produto";
+	private static final String applicationId = "564771466d477a4458664d3d";
 
 	private Context context;
 	private SQLiteDatabase db;
@@ -73,27 +77,59 @@ public class DataHelper {
 	}
 
 	public List<Produto> selectAll() {
-		
+
 		Produto produto;
 		List<Produto> list = new ArrayList<Produto>();
 		Cursor c = this.db.query(TABLE_NAME, new String[] { "ID_PRODUTO",
-				"PRECO_ANT", "TEMPO_LOOP", "NOME_PRODUTO", "IMG_PRODUTO" }, null, null, null,
-				null, null);
+				"PRECO_ANT", "TEMPO_LOOP", "NOME_PRODUTO", "IMG_PRODUTO" },
+				null, null, null, null, null);
 		if (c.moveToNext()) {
 			do {
 				produto = new Produto();
 				produto.setId(c.getString(c.getColumnIndex("ID_PRODUTO")));
-				produto.setProductName(c.getString(c.getColumnIndex("NOME_PRODUTO")));
+				produto.setProductName(c.getString(c
+						.getColumnIndex("NOME_PRODUTO")));
 				produto.setPriceMin(c.getString(c.getColumnIndex("PRECO_ANT")));
-				produto.setThumbnail(c.getString(c.getColumnIndex("IMG_PRODUTO")));
+				produto.setThumbnail(c.getString(c
+						.getColumnIndex("IMG_PRODUTO")));
+				produto.setTempoLoop(c.getString(c.getColumnIndex("TEMPO_LOOP")));
 				list.add(produto);
 			} while (c.moveToNext());
 		}
-		
+
 		if (c != null && !c.isClosed()) {
 			c.close();
 		}
-		
+
 		return list;
 	}
+
+	/**
+	 * Método responável por verificar se algum produto da lista possúi um preço
+	 * menor.
+	 */
+	public List<Produto> verificaMudancaPreco() {
+
+		List<Produto> produtosBanco = selectAll();
+		List<Produto> produtosAlterados = new ArrayList<Produto>();
+		Buscape buscape = new Buscape(applicationId, new Filter());
+		for (Produto produtoBanco : produtosBanco) {
+			Produto produtoNovo = new Produto();
+			try {
+				produtoNovo = buscape.retornaProduto(produtoBanco.getId());
+			} catch (BuscapeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			float precoAntigo = Float.parseFloat(produtoBanco.getPriceMin());
+			float precoNovo = Float.parseFloat(produtoNovo.getPriceMin());
+			if (precoNovo < precoAntigo) {
+				produtosAlterados.add(produtoNovo);
+			}
+		}
+		
+		return produtosAlterados;
+
+	}
+
 }

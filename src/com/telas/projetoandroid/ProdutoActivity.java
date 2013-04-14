@@ -75,7 +75,7 @@ public class ProdutoActivity extends Activity {
 	
 	public void onClear(View v){
 		
-		EditText edt = (EditText) findViewById(R.id.editText1);
+		EditText edt = (EditText) findViewById(R.id.edtHoras);
 		edt.setText("");
 	}
 
