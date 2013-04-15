@@ -29,7 +29,7 @@ public class DataHelper {
 	private static final String INSERT = "INSERT INTO "
 			+ TABLE_NAME
 			+ " (TEMPO_LOOP, ID_PRODUTO, PRECO_ANT, IMG_PRODUTO, NOME_PRODUTO) VALUES(?, ?, ?, ?, ?)";
-
+	
 	public DataHelper(Context context) {
 		this.context = context;
 		OpenHelper openHelper = new OpenHelper(this.context);
@@ -103,7 +103,7 @@ public class DataHelper {
 
 		return list;
 	}
-
+	
 	/**
 	 * Método responável por verificar se algum produto da lista possúi um preço
 	 * menor.

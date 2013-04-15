@@ -32,7 +32,8 @@ public class ProdutoService extends AsyncTask<String, String, Void> {
 				List<Produto> produtos = dh.verificaMudancaPreco();
 				if (!produtos.isEmpty()) {
 					tempo = 0;
-					  
+					// Chama método para emitir notificação e parar a busca periodica
+					// Atualiza nova lista de produtos no banco
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
